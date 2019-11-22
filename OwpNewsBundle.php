@@ -1,5 +1,5 @@
 <?php
-namespace Owp\OwpCore;
+namespace Owp\OwpNews;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

@@ -4,7 +4,7 @@ namespace Owp\OwpNews\Service;
 
 use Owp\OwpCore\Entity\News;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\ORM\EntityManagerInterface;
+use Owp\OwpNews\NewsRepository;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Security;
@@ -14,24 +14,33 @@ use Knp\Snappy\Pdf;
 
 class NewsService {
 
-    private $em;
-    private $formFactory;
+    private $newsRepository;
     private $session;
     private $security;
     private $twig;
-    private $pdf;
 
-    public function __construct(EntityManagerInterface $em, FormFactoryInterface $formFactory, SessionInterface $session, Security $security, Environment $twig, Pdf $pdf)
+    public function __construct(NewsRepository $newsRepository, SessionInterface $session, Security $security, Environment $twig)
     {
-        $this->em = $em;
-        $this->formFactory = $formFactory;
+        $this->newsRepository = $newsRepository;
         $this->session = $session;
         $this->security = $security;
         $this->twig = $twig;
-        $this->pdf = $pdf;
     }
 
-    public function get(Event $event)
+    public function getBy(array $filters = [], $order = ['updateAt' => 'DESC'])
+    {
+        if (empty($filters)) {
+            $filters['promote'] = true;
+        }
+
+        if (!$this->security->isGranted('ROLE_MEMBER')) {
+            $filters['private'] = false;
+        }
+
+        return $this->newsRepository->findBy($filters, $order)
+    }
+
+    public function view(News $news)
     {
         
     }
