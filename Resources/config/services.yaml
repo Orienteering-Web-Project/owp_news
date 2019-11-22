@@ -1,0 +1,23 @@
+services:
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false       # Allows optimizing the container by removing unused services; this also means
+
+    Owp\OwpNews\:
+        resource: '../../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Resources,OwpCoreBundle.php}'
+
+    Owp\OwpNews\Controller\:
+        resource: '../../src/Controller'
+        tags: ['controller.service_arguments']
+
+    admin.news:
+        class: Owp\OwpNews\Admin\NewsAdmin
+        arguments: [~, App\Entity\News, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: content, label: "Actualités" }
+
+    owp.service.news:
+        class: Owp\OwpNews\Service\NewsService
+        arguments: []
