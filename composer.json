@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "owp/owp_core": "*"
+        "owp/owp-core": "*"
     },
     "config": {
         "optimize-autoloader": true
