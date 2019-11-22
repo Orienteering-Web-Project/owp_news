@@ -1,5 +1,5 @@
 {
-    "name": "owp/owp-core",
+    "name": "owp/owp-news",
     "description": "Package OWP Core : coeur du système OWP",
     "type": "symfony-bundle",
     "license": "MIT",
