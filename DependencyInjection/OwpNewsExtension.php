@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 
-class OwpNewsExtension extends Extension implements PrependExtensionInterface
+class OwpNewsExtension extends Extension
 {
     /**
      * Handles the knp_menu configuration.
@@ -22,9 +22,5 @@ class OwpNewsExtension extends Extension implements PrependExtensionInterface
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yaml');
-    }
-
-    public function prepend(ContainerBuilder $container)
-    {
     }
 }
