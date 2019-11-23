@@ -37,11 +37,11 @@ class NewsService {
             $filters['private'] = false;
         }
 
-        return $this->newsRepository->findBy($filters, $order)
+        return $this->newsRepository->findBy($filters, $order);
     }
 
     public function view(News $news)
     {
-        
+
     }
 }

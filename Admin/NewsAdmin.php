@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Owp\OwpCore\Admin\AbstractNodeAdmin;
 
 final class NewsAdmin extends AbstractNodeAdmin
 {
