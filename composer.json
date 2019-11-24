@@ -1,6 +1,6 @@
 {
     "name": "owp/owp-news",
-    "description": "Package OWP Core : coeur du système OWP",
+    "description": "Package OWP News : gestion des actualités pour les système OWP",
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [

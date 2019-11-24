@@ -40,8 +40,10 @@ class NewsService {
         return $this->newsRepository->findBy($filters, $order);
     }
 
-    public function view(News $news)
+    public function isAllowed(News $news)
     {
-
+        if (!$this->security->isGranted('view', $news)) {
+            throw $this->createAccessDeniedException('Vous n\'êtes par autorisé à consulter cette page.');
+        }
     }
 }
