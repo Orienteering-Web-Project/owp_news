@@ -4,7 +4,7 @@ namespace Owp\OwpNews\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-use App\Service\NewsService;
+use Owp\OwpNews\Service\NewsService;
 use Owp\OwpNews\Entity\News;
 
 class NewsController extends Controller
