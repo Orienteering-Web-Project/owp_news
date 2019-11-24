@@ -4,7 +4,3 @@ services:
         arguments: [~, Owp\OwpNews\Entity\News, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, group: content, label: "Actualités" }
-
-    owp_news.service.news:
-        class: Owp\OwpNews\Service\NewsService
-        arguments: []

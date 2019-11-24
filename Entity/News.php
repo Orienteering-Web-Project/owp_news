@@ -5,6 +5,7 @@ namespace Owp\OwpNews\Entity;
 use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use Owp\OwpCore\Model as OwpCommonTrait;
+use Knp\DoctrineBehaviors\Model\Sluggable\Sluggable;
 
 /**
  * @ORM\Entity(repositoryClass="Owp\OwpNews\Repository\NewsRepository")
@@ -12,11 +13,18 @@ use Owp\OwpCore\Model as OwpCommonTrait;
  */
 class News
 {
+    use Sluggable;
+
     use OwpCommonTrait\IdTrait;
     use OwpCommonTrait\TitleTrait;
     use OwpCommonTrait\ContentTrait;
     use OwpCommonTrait\AuthorTrait;
     use OwpCommonTrait\PrivateTrait;
+
+    /**
+     * @ORM\Column(type="string", length=512)
+     */
+    protected $slug;
 
     /**
      * @ORM\Column(name="promote", type="boolean")
@@ -38,5 +46,15 @@ class News
         $this->promote = $promote;
 
         return $this;
+    }
+    
+    public function getSluggableFields()
+    {
+        return [ 'id', 'title' ];
+    }
+
+    public function generateSlugValue($values)
+    {
+        return implode('-', str_replace(' ', '-', $values));
     }
 }
