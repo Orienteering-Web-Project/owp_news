@@ -9,12 +9,12 @@ use Owp\OwpNews\Entity\News;
 
 class NewsController extends Controller
 {
-    public function show(News $news, NewsService $newsService): Response
+    public function show(string $slug, NewsService $newsService): Response
     {
-        $newsService->isAllowed('show', $news);
+        $entity = $newsService->get($slug);
 
         return $this->render('News/show.html.twig', [
-            'news' => $news,
+            'news' => $entity,
         ]);
     }
 }

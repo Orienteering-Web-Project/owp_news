@@ -11,6 +11,8 @@ use Symfony\Component\Security\Core\Security;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Twig\Environment;
 use Knp\Snappy\Pdf;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class NewsService {
 
@@ -40,10 +42,17 @@ class NewsService {
         return $this->newsRepository->findBy($filters, $order);
     }
 
-    public function isAllowed(News $news)
+    public function get(string $slug)
     {
-        if (!$this->security->isGranted('view', $news)) {
-            throw $this->createAccessDeniedException('Vous n\'êtes par autorisé à consulter cette page.');
+        $entity = $this->newsRepository->findOneBySlug($slug);
+
+        if (empty($entity)) {
+            throw new NotFoundHttpException();
         }
+        elseif (!$this->security->isGranted('view', $entity)) {
+            throw new AccessDeniedException();
+        }
+
+        return $entity;
     }
 }
