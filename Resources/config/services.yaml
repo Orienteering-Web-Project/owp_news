@@ -9,6 +9,10 @@ services:
         resource: '../../*'
         exclude: '../../{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
 
+    service.news:
+        class: Owp\OwpNews\Service\NewsService
+        public: true
+
     admin.news:
         class: Owp\OwpNews\Admin\NewsAdmin
         arguments: [~, Owp\OwpNews\Entity\News, ~]
