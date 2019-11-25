@@ -3,14 +3,10 @@
 namespace Owp\OwpNews\Service;
 
 use Owp\OwpCore\Entity\News;
-use Symfony\Component\HttpFoundation\Request;
 use Owp\OwpNews\Repository\NewsRepository;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Security;
-use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Twig\Environment;
-use Knp\Snappy\Pdf;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 

@@ -2,7 +2,6 @@
 
 namespace Owp\OwpNews\Entity;
 
-use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use Owp\OwpCore\Model as OwpCommonTrait;
 
