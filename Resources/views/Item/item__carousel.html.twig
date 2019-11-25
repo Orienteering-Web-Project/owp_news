@@ -1,0 +1,19 @@
+<div role="listitem" class="carousel-item {{ loop.index0 == 0 ? 'active' }}">
+    <img class="first-slide opacity-20" src="{{ asset('images/default.jpg') | imagine_filter('carousel_header') }}" alt="">
+    <div class="container">
+        <div class="carousel-caption text-left">
+            <h1 class="text-primary">{{ new.title }}</h1>
+            <div class="text-white font-italic">
+                Publié le {{ period(new.createAt) }}
+                Modifié le {{ period(new.updateAt) }}
+            </div>
+            <p class="text-justify d-lg-none">{{ new.content|striptags|truncate(250)|raw }}</p>
+            <p class="text-justify d-none d-lg-block">{{ new.content|striptags|truncate(500)|raw }}</p>
+            <p>
+                <a class="btn btn-primary" href="{{ path('owp_news_show', {'slug': new.slug}) }}" role="button">
+                    Lire la suite
+                </a>
+            </p>
+        </div>
+    </div>
+</div>

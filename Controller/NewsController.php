@@ -12,7 +12,7 @@ class NewsController extends Controller
     {
         $entity = $newsService->get($slug);
 
-        return $this->render('@OwpNews/News/show.html.twig', [
+        return $this->render('@OwpNews/Page/show.html.twig', [
             'news' => $entity,
         ]);
     }
