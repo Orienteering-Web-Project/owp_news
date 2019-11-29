@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\Security;
 class NewsVoter extends Voter
 {
     const VIEW = 'view';
+    const EDIT = 'edit';
 
     private $security;
 
@@ -21,7 +22,7 @@ class NewsVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        if (!in_array($attribute, [self::VIEW])) {
+        if (!in_array($attribute, [self::VIEW, self::EDIT])) {
             return false;
         }
 
@@ -39,6 +40,8 @@ class NewsVoter extends Voter
         switch ($attribute) {
             case self::VIEW:
                 return $this->canView($event, $user);
+            case self::EDIT:
+                return $this->canEdit($event, $user);
         }
 
         throw new \LogicException('This code should not be reached!');
@@ -51,5 +54,14 @@ class NewsVoter extends Voter
         }
 
         return true;
+    }
+
+    private function canEdit(News $news, $user)
+    {
+        if ($this->security->isGranted('ROLE_WEBMASTER')) {
+            return true;
+        }
+
+        return false;
     }
 }

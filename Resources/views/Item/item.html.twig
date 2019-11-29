@@ -8,5 +8,13 @@
             </p>
             <a href="{{ path('owp_news_show', {'slug': new.slug}) }}" class="btn btn-primary stretched-link">Lire l'actualité</a>
         </div>
+        {% if is_granted('edit', new) %}
+        <div class="admin-quick-edit">
+            <a href="{{ path('admin_owp_owpnews_news_edit', {'id': new.id}) }}" class='btn btn-outline-secondary' href=""><i class="fa fa-edit"></i></a>
+            <button data-toggle="modal" data-target="#confirm-delete" data-href="{{ path('admin_owp_owpnews_news_delete', {'id': new.id}) }}" type="button" class="btn btn-outline-danger">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+        </div>
+        {% endif %}
     </div>
 </div>
