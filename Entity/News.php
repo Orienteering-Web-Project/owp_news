@@ -5,6 +5,7 @@ namespace Owp\OwpNews\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Owp\OwpCore\Model as OwpCommonTrait;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 
 /**
  * @ORM\Entity(repositoryClass="Owp\OwpNews\Repository\NewsRepository")
@@ -24,5 +25,6 @@ class News
     public function __construct()
     {
         $this->setPromote(true);
+        $this->image = new EmbeddedFile();
     }
 }
