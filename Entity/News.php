@@ -4,10 +4,12 @@ namespace Owp\OwpNews\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Owp\OwpCore\Model as OwpCommonTrait;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="Owp\OwpNews\Repository\NewsRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @Vich\Uploadable
  */
 class News
 {
@@ -17,7 +19,7 @@ class News
     use OwpCommonTrait\AuthorTrait;
     use OwpCommonTrait\PrivateTrait;
     use OwpCommonTrait\PromoteTrait;
-
+    use OwpCommonTrait\ImageTrait;
 
     public function __construct()
     {
